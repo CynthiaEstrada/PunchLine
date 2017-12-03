@@ -18,7 +18,9 @@ public class Seleccion extends javax.swing.JFrame {
     Teclas tc = new Teclas();//ojeto de la clase Teclas, ventana principal
     
     private static String TeclasEspeciales[] ={"", "Enter", "Retroceso", "Ctrl", "Alt", "Shift", "Espacio" };
-    
+    String tc1;
+    String tc2;
+    String tc3;
     public static int Tecla1;//variable que guarda el valor de la primer tecla seleccionada en codigo ascii
     public static int Tecla2;//variable que guarda el valor de la segunda tecla seleccionada en codigo ascii
     public static int Tecla3;//variable que guarda el valor de la tercera tecla seleccionada en codigo ascii
@@ -278,11 +280,6 @@ public class Seleccion extends javax.swing.JFrame {
                 Tc1ActionPerformed(evt);
             }
         });
-        Tc1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                Tc1KeyTyped(evt);
-            }
-        });
 
         Label_1.setText("Tecla 1");
 
@@ -406,12 +403,16 @@ public class Seleccion extends javax.swing.JFrame {
     private void Tc1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Tc1ActionPerformed
 
     }//GEN-LAST:event_Tc1ActionPerformed
-
-    private void Tc1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Tc1KeyTyped
-
-    }//GEN-LAST:event_Tc1KeyTyped
 */
     private void BotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonActionPerformed
+            if(tc.seleccion_item == "1"){
+                if(CheckBox_1.isSelected() == false){
+                    tc1 = Tc1.getText();
+                    Tecla1 = tc1.codePointAt(0);
+                            System.out.print(Tecla1);
+                }
+            }
+        
             System.exit(0);
             dispose();
     }//GEN-LAST:event_BotonActionPerformed
@@ -450,7 +451,7 @@ public class Seleccion extends javax.swing.JFrame {
         this.Tc3.setVisible(true);
     }
     }//GEN-LAST:event_CheckBox_3StateChanged
-
+/*
     private void Boton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Boton1ActionPerformed
@@ -478,7 +479,7 @@ public class Seleccion extends javax.swing.JFrame {
     private void CheckBox_6StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_CheckBox_6StateChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_CheckBox_6StateChanged
-
+*/
     /**
      * @param args the command line arguments
      */
