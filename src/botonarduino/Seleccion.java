@@ -7,6 +7,7 @@ package botonarduino;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 
 /**
@@ -14,9 +15,13 @@ import javax.swing.JComboBox;
  * @author cyndi
  */
 public class Seleccion extends javax.swing.JFrame {
-    Teclas tc = new Teclas();
+    Teclas tc = new Teclas();//ojeto de la clase Teclas, ventana principal
     
-    public static int Tecla;
+    private static String TeclasEspeciales[] ={"", "Enter", "Retroceso", "Ctrl", "Alt", "Shift", "Espacio" };
+    
+    public static int Tecla1;//variable que guarda el valor de la primer tecla seleccionada en codigo ascii
+    public static int Tecla2;//variable que guarda el valor de la segunda tecla seleccionada en codigo ascii
+    public static int Tecla3;//variable que guarda el valor de la tercera tecla seleccionada en codigo ascii
 
     public Seleccion() {
         initComponents();
@@ -25,7 +30,7 @@ public class Seleccion extends javax.swing.JFrame {
         
         setTitle("PunchLine");
         setLocationRelativeTo(null);
-        setSize(300, 260);
+        setSize(330, 260);
         setResizable(false);
         setLayout(new BorderLayout(0,0));
         
@@ -37,6 +42,10 @@ public class Seleccion extends javax.swing.JFrame {
         Label_3.setFont(fuente);
         
         Mostrar(tc.seleccion_item);
+        
+        ComboBox1.setModel(new DefaultComboBoxModel<>(TeclasEspeciales) );
+        ComboBox2.setModel(new DefaultComboBoxModel<>(TeclasEspeciales) );
+        ComboBox3.setModel(new DefaultComboBoxModel<>(TeclasEspeciales) );
       
     }
     
@@ -47,16 +56,21 @@ public class Seleccion extends javax.swing.JFrame {
             Tc1.setEnabled(true);
             Label_2.setEnabled(false);
             Tc2.setEnabled(false);
+            CheckBox_2.setEnabled(false);
             Label_3.setEnabled(false);
             Tc3.setEnabled(false);
+            CheckBox_3.setEnabled(false);
+            
         }
         if(seleccion == "2"){
             Label_1.setEnabled(true);
             Tc1.setEnabled(true);
             Label_2.setEnabled(true);
             Tc2.setEnabled(true);
+            CheckBox_2.setEnabled(true);
             Label_3.setEnabled(false);
             Tc3.setEnabled(false);
+            CheckBox_3.setEnabled(false);
         }
         if(seleccion == "3")
         {
@@ -64,9 +78,15 @@ public class Seleccion extends javax.swing.JFrame {
             Tc1.setEnabled(true);
             Label_2.setEnabled(true);
             Tc2.setEnabled(true);
+            CheckBox_2.setEnabled(true);
             Label_3.setEnabled(true);
             Tc3.setEnabled(true);
+            CheckBox_3.setEnabled(true);
         }
+        this.ComboBox1.setVisible(false);
+        this.ComboBox2.setVisible(false);
+        this.ComboBox3.setVisible(false);
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -74,6 +94,22 @@ public class Seleccion extends javax.swing.JFrame {
     private void initComponents() {
 
         jComboBox1 = new javax.swing.JComboBox<>();
+        jFrame1 = new javax.swing.JFrame();
+        Boton1 = new javax.swing.JButton();
+        Tc4 = new javax.swing.JTextField();
+        Tc5 = new javax.swing.JTextField();
+        Tc6 = new javax.swing.JTextField();
+        Label_4 = new javax.swing.JLabel();
+        Label_5 = new javax.swing.JLabel();
+        Label_6 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        ComboBox4 = new javax.swing.JComboBox<>();
+        ComboBox5 = new javax.swing.JComboBox<>();
+        ComboBox6 = new javax.swing.JComboBox<>();
+        CheckBox_4 = new javax.swing.JCheckBox();
+        CheckBox_5 = new javax.swing.JCheckBox();
+        CheckBox_6 = new javax.swing.JCheckBox();
+        jLabel2 = new javax.swing.JLabel();
         Boton = new javax.swing.JButton();
         Tc1 = new javax.swing.JTextField();
         Tc2 = new javax.swing.JTextField();
@@ -81,7 +117,6 @@ public class Seleccion extends javax.swing.JFrame {
         Label_1 = new javax.swing.JLabel();
         Label_2 = new javax.swing.JLabel();
         Label_3 = new javax.swing.JLabel();
-        CheckBox = new javax.swing.JCheckBox();
         jButton1 = new javax.swing.JButton();
         ComboBox2 = new javax.swing.JComboBox<>();
         ComboBox3 = new javax.swing.JComboBox<>();
@@ -89,8 +124,145 @@ public class Seleccion extends javax.swing.JFrame {
         CheckBox_1 = new javax.swing.JCheckBox();
         CheckBox_2 = new javax.swing.JCheckBox();
         CheckBox_3 = new javax.swing.JCheckBox();
+        jLabel1 = new javax.swing.JLabel();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jFrame1.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        Boton1.setText("Ok");
+        Boton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Boton1ActionPerformed(evt);
+            }
+        });
+
+        Tc4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Tc4ActionPerformed(evt);
+            }
+        });
+        Tc4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                Tc4KeyTyped(evt);
+            }
+        });
+
+        Label_4.setText("Tecla 1");
+
+        Label_5.setText("Tecla 2");
+
+        Label_6.setText("Tecla 3");
+
+        jButton2.setText("Volver");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        ComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        ComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        ComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        CheckBox_4.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                CheckBox_4StateChanged(evt);
+            }
+        });
+
+        CheckBox_5.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                CheckBox_5StateChanged(evt);
+            }
+        });
+
+        CheckBox_6.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                CheckBox_6StateChanged(evt);
+            }
+        });
+
+        jLabel2.setText("Tecla Especial");
+
+        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
+        jFrame1.getContentPane().setLayout(jFrame1Layout);
+        jFrame1Layout.setHorizontalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jFrame1Layout.createSequentialGroup()
+                .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jFrame1Layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(jButton2)
+                        .addGap(59, 59, 59)
+                        .addComponent(Boton1))
+                    .addGroup(jFrame1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2))
+                    .addGroup(jFrame1Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CheckBox_4, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(CheckBox_5)
+                            .addComponent(CheckBox_6))
+                        .addGap(18, 18, 18)
+                        .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jFrame1Layout.createSequentialGroup()
+                                .addComponent(Label_6)
+                                .addGap(19, 19, 19)
+                                .addComponent(ComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jFrame1Layout.createSequentialGroup()
+                                .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(Label_4)
+                                    .addComponent(Label_5))
+                                .addGap(18, 18, 18)
+                                .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(ComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(22, 22, 22)
+                        .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Tc4, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Tc6, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Tc5, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(42, Short.MAX_VALUE))
+        );
+        jFrame1Layout.setVerticalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jFrame1Layout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(CheckBox_4)
+                    .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Tc4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Label_4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jFrame1Layout.createSequentialGroup()
+                        .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Tc5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Label_5)
+                            .addComponent(ComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10))
+                    .addGroup(jFrame1Layout.createSequentialGroup()
+                        .addComponent(CheckBox_5)
+                        .addGap(9, 9, 9)))
+                .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Tc6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Label_6)
+                        .addComponent(ComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CheckBox_6))
+                .addGap(9, 9, 9)
+                .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Boton1)
+                    .addComponent(jButton2))
+                .addContainerGap(33, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -117,13 +289,6 @@ public class Seleccion extends javax.swing.JFrame {
         Label_2.setText("Tecla 2");
 
         Label_3.setText("Tecla 3");
-
-        CheckBox.setText("No quiero un numero y\\o letra");
-        CheckBox.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                CheckBoxStateChanged(evt);
-            }
-        });
 
         jButton1.setText("Volver");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -156,114 +321,100 @@ public class Seleccion extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Tecla Especial");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CheckBox_1)
-                    .addComponent(CheckBox_2)
-                    .addComponent(CheckBox_3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CheckBox)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(jButton1)
+                        .addGap(59, 59, 59)
+                        .addComponent(Boton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(Label_1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(ComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(CheckBox_1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(CheckBox_2)
+                            .addComponent(CheckBox_3))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(Label_3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(19, 19, 19)
                                 .addComponent(ComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton1)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(Label_2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(ComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(Label_1)
+                                    .addComponent(Label_2))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(ComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Boton)
                             .addComponent(Tc1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Tc3, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Tc2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Tc1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Label_1)
-                            .addComponent(ComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CheckBox_1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(Tc2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(Label_2)
-                                .addComponent(ComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(CheckBox_2))
-                        .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Tc3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Label_3)
-                            .addComponent(ComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(CheckBox_3))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(CheckBox)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(CheckBox_1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Tc1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Label_1))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Tc2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Label_2)
+                            .addComponent(ComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(CheckBox_2)
+                        .addGap(18, 18, 18)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Tc3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Label_3)
+                        .addComponent(ComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CheckBox_3))
+                .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Boton)
                     .addComponent(jButton1))
-                .addGap(20, 20, 20))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/*
     private void Tc1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Tc1ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_Tc1ActionPerformed
 
     private void Tc1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Tc1KeyTyped
-       Tecla = evt.getKeyCode();
-       System.out.print(Tecla);
-    }//GEN-LAST:event_Tc1KeyTyped
 
+    }//GEN-LAST:event_Tc1KeyTyped
+*/
     private void BotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonActionPerformed
-        //al presionar enviar los datos al arduino
-        Teclas_Especiales TE = new Teclas_Especiales();
-        if(CheckBox.isSelected() == true){
-        TE.setVisible(true); 
-        dispose();
-        }
-        else{
             System.exit(0);
             dispose();
-        }
     }//GEN-LAST:event_BotonActionPerformed
-
-    private void CheckBoxStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_CheckBoxStateChanged
-        if(CheckBox.isSelected() == true){
-            Label_1.setEnabled(false);
-            Tc1.setEnabled(false);
-            Label_2.setEnabled(false);
-            Tc2.setEnabled(false);
-            Label_3.setEnabled(false);
-            Tc3.setEnabled(false);
-            
-        }
-        else{
-            Mostrar(tc.seleccion_item);
-        }
-    }//GEN-LAST:event_CheckBoxStateChanged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         tc.setVisible(true);
@@ -299,6 +450,34 @@ public class Seleccion extends javax.swing.JFrame {
         this.Tc3.setVisible(true);
     }
     }//GEN-LAST:event_CheckBox_3StateChanged
+
+    private void Boton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Boton1ActionPerformed
+
+    private void Tc4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Tc4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Tc4ActionPerformed
+
+    private void Tc4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Tc4KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Tc4KeyTyped
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void CheckBox_4StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_CheckBox_4StateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CheckBox_4StateChanged
+
+    private void CheckBox_5StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_CheckBox_5StateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CheckBox_5StateChanged
+
+    private void CheckBox_6StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_CheckBox_6StateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CheckBox_6StateChanged
 
     /**
      * @param args the command line arguments
@@ -337,20 +516,36 @@ public class Seleccion extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Boton;
-    private javax.swing.JCheckBox CheckBox;
+    private javax.swing.JButton Boton1;
     private javax.swing.JCheckBox CheckBox_1;
     private javax.swing.JCheckBox CheckBox_2;
     private javax.swing.JCheckBox CheckBox_3;
+    private javax.swing.JCheckBox CheckBox_4;
+    private javax.swing.JCheckBox CheckBox_5;
+    private javax.swing.JCheckBox CheckBox_6;
     private javax.swing.JComboBox<String> ComboBox1;
     private javax.swing.JComboBox<String> ComboBox2;
     private javax.swing.JComboBox<String> ComboBox3;
+    private javax.swing.JComboBox<String> ComboBox4;
+    private javax.swing.JComboBox<String> ComboBox5;
+    private javax.swing.JComboBox<String> ComboBox6;
     private javax.swing.JLabel Label_1;
     private javax.swing.JLabel Label_2;
     private javax.swing.JLabel Label_3;
+    private javax.swing.JLabel Label_4;
+    private javax.swing.JLabel Label_5;
+    private javax.swing.JLabel Label_6;
     private javax.swing.JTextField Tc1;
     private javax.swing.JTextField Tc2;
     private javax.swing.JTextField Tc3;
+    private javax.swing.JTextField Tc4;
+    private javax.swing.JTextField Tc5;
+    private javax.swing.JTextField Tc6;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JFrame jFrame1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
