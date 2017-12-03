@@ -62,6 +62,11 @@ public class Teclas_Especiales extends javax.swing.JFrame {
         });
 
         jButton1.setText("Ok");
+        jButton1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jButton1KeyTyped(evt);
+            }
+        });
 
         TextArea.setText("jLabel1");
 
@@ -103,8 +108,13 @@ public class Teclas_Especiales extends javax.swing.JFrame {
 
     private void formKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyTyped
        Tecla = evt.getKeyCode();
-       TextArea.setText(String.valueOf(Tecla));
+       System.out.println(Tecla);
     }//GEN-LAST:event_formKeyTyped
+
+    private void jButton1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyTyped
+       Tecla = evt.getKeyCode();
+       System.out.println(Tecla);
+    }//GEN-LAST:event_jButton1KeyTyped
 
     /**
      * @param args the command line arguments

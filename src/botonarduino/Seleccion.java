@@ -10,17 +10,17 @@ import java.awt.Font;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 
-/**
- *
- * @author cyndi
- */
 public class Seleccion extends javax.swing.JFrame {
     Teclas tc = new Teclas();//ojeto de la clase Teclas, ventana principal
     
     private static String TeclasEspeciales[] ={"", "Enter", "Retroceso", "Ctrl", "Alt", "Shift", "Espacio" };
+    int teclaProvisional;
+    String teclaProvisional2;
+    
     String tc1;
     String tc2;
     String tc3;
+    
     public static int Tecla1;//variable que guarda el valor de la primer tecla seleccionada en codigo ascii
     public static int Tecla2;//variable que guarda el valor de la segunda tecla seleccionada en codigo ascii
     public static int Tecla3;//variable que guarda el valor de la tercera tecla seleccionada en codigo ascii
@@ -275,12 +275,6 @@ public class Seleccion extends javax.swing.JFrame {
             }
         });
 
-        Tc1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Tc1ActionPerformed(evt);
-            }
-        });
-
         Label_1.setText("Tecla 1");
 
         Label_2.setText("Tecla 2");
@@ -399,22 +393,104 @@ public class Seleccion extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-/*
-    private void Tc1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Tc1ActionPerformed
-
-    }//GEN-LAST:event_Tc1ActionPerformed
-*/
+/**/
     private void BotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonActionPerformed
-            if(tc.seleccion_item == "1"){
+        //si se selecciona 1 tecla   
+        if(tc.seleccion_item == "1"){
                 if(CheckBox_1.isSelected() == false){
                     tc1 = Tc1.getText();
                     Tecla1 = tc1.codePointAt(0);
-                            System.out.print(Tecla1);
+                }else{
+                    Tecla1 = teclaProvisional;// si no es Alt o Shift enviar Tecla1
+                    
+                    if(ComboBox1.getSelectedIndex() == 4){
+                        teclaProvisional2 = "Alt";
+                    }
+                    if(ComboBox1.getSelectedIndex() == 5){
+                        teclaProvisional2 = "Shift";
+                    }
+                }
+        }
+                //si se seleccionan dos teclas
+            if(tc.seleccion_item == "2"){
+                if(CheckBox_1.isSelected() == false){
+                    tc1 = Tc1.getText();
+                    Tecla1 = tc1.codePointAt(0);
+                }
+                else{
+                    Tecla1 = teclaProvisional;// si no es Alt o Shift enviar Tecla1
+                    
+                    if(ComboBox1.getSelectedIndex() == 4){
+                        teclaProvisional2 = "Alt";
+                    }
+                    if(ComboBox1.getSelectedIndex() == 5){
+                        teclaProvisional2 = "Shift";
+                    }
+                
+                }
+                if(CheckBox_2.isSelected() == false){
+                    tc2 = Tc2.getText();
+                    Tecla2 = tc2.codePointAt(0);}
+                else{
+                    Tecla2 = teclaProvisional;// si no es Alt o Shift enviar Tecla2
+                    
+                    if(ComboBox2.getSelectedIndex() == 4){
+                        teclaProvisional2 = "Alt";
+                    }
+                    if(ComboBox2.getSelectedIndex() == 5){
+                        teclaProvisional2 = "Shift";
+                    }
+                    
                 }
             }
-        
+                //si se seleccionan 3 teclas
+            if(tc.seleccion_item == "3"){
+                if(CheckBox_1.isSelected() == false){
+                    tc1 = Tc1.getText();
+                    Tecla1 = tc1.codePointAt(0);
+                }
+                else{
+                    Tecla1 = teclaProvisional;// si no es Alt o Shift enviar Tecla1
+                    
+                    if(ComboBox1.getSelectedIndex() == 4){
+                        teclaProvisional2 = "Alt";
+                    }
+                    if(ComboBox1.getSelectedIndex() == 5){
+                        teclaProvisional2 = "Shift";
+                    }
+                }
+                if(CheckBox_2.isSelected() == false){
+                    tc2 = Tc2.getText();
+                    Tecla2 = tc2.codePointAt(0);
+                }
+                else{
+                    Tecla2 = teclaProvisional;// si no es Alt o Shift enviar Tecla1
+                    
+                    if(ComboBox2.getSelectedIndex() == 4){
+                        teclaProvisional2 = "Alt";
+                    }
+                    if(ComboBox2.getSelectedIndex() == 5){
+                        teclaProvisional2 = "Shift";
+                    }
+                }
+                if(CheckBox_3.isSelected() == false){
+                    tc3 = Tc3.getText();
+                    Tecla3 = tc3.codePointAt(0);
+                }
+                else{
+                    Tecla3 = teclaProvisional;// si no es Alt o Shift enviar Tecla1
+                    
+                    if(ComboBox3.getSelectedIndex() == 4){
+                        teclaProvisional2 = "Alt";
+                    }
+                    if(ComboBox3.getSelectedIndex() == 5){
+                        teclaProvisional2 = "Shift";
+                    }
+                }
+            }
             System.exit(0);
             dispose();
+            
     }//GEN-LAST:event_BotonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -451,7 +527,21 @@ public class Seleccion extends javax.swing.JFrame {
         this.Tc3.setVisible(true);
     }
     }//GEN-LAST:event_CheckBox_3StateChanged
-/*
+
+    public void TeclasEspeciales(){
+        if(ComboBox1.getSelectedIndex() == 1){
+            teclaProvisional = 10;
+        }if(ComboBox1.getSelectedIndex() == 2){
+            teclaProvisional = 127;
+        }if(ComboBox1.getSelectedIndex() == 3){
+            teclaProvisional = 17;
+        }if(ComboBox1.getSelectedIndex() == 6){
+            teclaProvisional = 32;
+        }
+    }
+    
+    
+    /*
     private void Boton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Boton1ActionPerformed
